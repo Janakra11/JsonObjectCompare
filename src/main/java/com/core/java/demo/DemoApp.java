@@ -90,57 +90,6 @@ public class DemoApp {
         return diff;
     }
 
-
-
-    /*public static boolean comapreJson(String currentPath,  JsonNode o1, JsonNode o2,  Map<String, String> map, List<Integer>  suffix){
-
-        if(o1 == null || o2 == null) return false;
-
-        if(o1 != null && o2 != null){
-            if (o1.isValueNode() && o2.isValueNode()) {
-                System.out.println(o1);
-                System.out.println(o2);
-            }
-            else if (o1.isArray() && o2.isArray()) {
-
-                ArrayNode arrayNode = (ArrayNode) o1;
-
-                for (int i = 0; i < arrayNode.size(); i++) {
-                    suffix.add(i + 1);
-                    addKeys(currentPath, arrayNode.get(i), map, suffix);
-
-                    if (i + 1 <arrayNode.size()){
-                        suffix.remove(arrayNode.size() - 1);
-                    }
-                }
-                for (JsonNode arrayItem : o1) {
-                    System.out.println(arrayItem);
-                }
-
-                for (JsonNode arrayItem : o1) {
-                    System.out.println(arrayItem);
-                }
-            }
-            else if (o1.isObject() && o2.isObject()) {
-                System.out.println(o1);
-                System.out.println(o2);
-                Map<String, String> map = new HashMap<>();
-                ObjectNode objectNode = (ObjectNode) o1;
-                Iterator<Map.Entry<String, JsonNode>> iter = objectNode.fields();
-                String pathPrefix = currentPath.isEmpty() ? "" : currentPath + "-";
-
-                while (iter.hasNext()) {
-                    Map.Entry<String, JsonNode> entry = iter.next();
-                    addKeys(pathPrefix + entry.getKey(), entry.getValue(), map, new ArrayList<>());
-                }
-            }
-        }
-
-        return  false;
-    }*/
-
-
-
     private static void addKeys(String currentPath, JsonNode jsonNode, Map<String, String> map, List<String> suffix) {
         if (jsonNode.isObject()) {
             ObjectNode objectNode = (ObjectNode) jsonNode;
