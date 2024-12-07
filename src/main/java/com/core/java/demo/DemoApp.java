@@ -20,8 +20,8 @@ public class DemoApp {
                 new Country("Solapur", "Maharshtra"));
         List<Country> countries2 = Arrays.asList(new Country("Pune1", "Maharashtra1"));
         List<Address> addresses = Arrays.asList(new Address("Pune1", countries));
-        List<Address> addresses2 = Arrays.asList(new Address("Pune2", countries2));
-
+        List<Address> addresses2 = Arrays.asList(new Address("Pune2", countries2),
+                new Address("Pune3", countries2));
 
         Employee employee1 = new Employee(1L, "abc", "AI dev", addresses);
         Employee employee2 = new Employee(2L, "pqr", "AI dev", addresses2);
@@ -76,13 +76,32 @@ public class DemoApp {
                             diff.put(label, "value1:"+v+"\t value2:"+map2.get(k));
                         }
                     }else{
-                        diff.put(label, "value1:"+v+"\t value2:"+map2.get(k));
+                        if(diff.containsKey(label)){
+                            diff.put(label+"_1", diff.get(label));
+                        } else {
+                            diff.put(label, "value1:"+v+"\t value2:"+map2.get(k));
+                        }
                     }
                 });
             } else{
                 map2.forEach((k,v)->{
+                    String str = "employee."+k.toString().replaceAll("-",".");
+                    int i = str.contains("1") ? str.indexOf('1')-1: str.length();
+                    String s1 = str.substring(0, i);
+                    String label = (String) prop.get(s1);
+                    System.out.println(k+"="+"value1:"+v+"\t value2:"+map1.get(k));
                     if(map1.containsKey(k) && !v.equals(map1.get(k))){
-                        diff.put(k, "value1:"+map1.get(k)+"\t value2:"+v);
+                        if(diff.containsKey(label)){
+                            diff.put(label+"_1", diff.get(label));
+                        } else {
+                            diff.put(label, "value1:"+v+"\t value2:"+map1.get(k));
+                        }
+                    }else{
+                        if(diff.containsKey(label)){
+                            diff.put(label+"_1", diff.get(label));
+                        } else {
+                            diff.put(label, "value1:"+v+"\t value2:"+map1.get(k));
+                        }
                     }
                 });
             }
