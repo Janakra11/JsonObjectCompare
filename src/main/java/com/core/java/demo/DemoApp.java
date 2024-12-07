@@ -39,8 +39,8 @@ public class DemoApp {
 
         Map<String, String> diffMap =null;
 
-        System.out.println(map);
-        System.out.println(map2);
+        System.out.println(employee1);
+        System.out.println(employee2);
 
         Properties properties = loadProperties();
 
@@ -94,13 +94,13 @@ public class DemoApp {
                         if(diff.containsKey(label)){
                             diff.put(label+"_1", diff.get(label));
                         } else {
-                            diff.put(label, "value1:"+v+"\t value2:"+map1.get(k));
+                            diff.put(label, "value1:"+map1.get(k)+"\t value2:"+v);
                         }
                     }else{
                         if(diff.containsKey(label)){
                             diff.put(label+"_1", diff.get(label));
                         } else {
-                            diff.put(label, "value1:"+v+"\t value2:"+map1.get(k));
+                            diff.put(label, "value1:"+map1.get(k)+"\t value2:"+v);
                         }
                     }
                 });
